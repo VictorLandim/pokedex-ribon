@@ -46,10 +46,11 @@ The application will consume the following restful routes:
 `/:id PUT/UPDATE` - Updates a pokémon given a hash contains some or all of its fields.
 
 # Pokémon model schema
-Each pokémon will have the following fields:\
-- id: number(national pokédex number)\
-- name: string\
-- sprite_url: string\
-- type_1: string (possibily create a type that will hold possible types?)\
-- type_2: same as above\
 
+Each pokémon will have the following fields:\
+
+-   id: number(national pokédex number)\
+-   name: string\
+-   sprite_url: string\
+-   type_1: string (possibily create a type that will hold possible types?)\
+-   type_2: same as above\
