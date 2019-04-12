@@ -29,24 +29,27 @@ The main screen will list all pokémon in the database, displaying little inform
 -   [x] Create repo
 -   [x] Write readme
 -   [ ] Finish interface
--   [ ] Implement `redux` & `redux-thunk` or `redux-saga`
--   [ ] Add `styled-components`
--   [ ] Add frontend testing using `jest`
--   [ ] Add backend testing using `some-ruby-tesing-gem?`
+-   [ ] Implement redux & redux-thunk or redux-saga
+-   [ ] Implement typescript
+-   [ ] Add styled-components
+-   [ ] Add frontend testing using jest
+-   [ ] Add backend testing using some-ruby-tesing-gem?
 
 # Api design
 
 The application will consume the following restful routes:
 
-> Note that each pokémon will have the following fields:\
-> `id: number(national pokédex number)`\
-> `name: string`\
-> `sprite_url: string`\
-> `type_1: string (possibily create a type that will hold possible types?)`\
-> `type_2: same as above`\
-
 `/ GET` - Retrieves all pokémon (name and sprite)\
-`/ POST` - Creates a new pokémon, given all fields listed above.\
+`/ POST` - Creates a new pokémon, given all fields listed bellow.\
 `/:id GET` - Retrieves details of a given pokémon (name, sprite, types, evolutions)\
-`/:id DELETE` - Deletes a pokémon
-`/:id PUT/UPDATE` - Updates a pokémon given a hash contains some or all of its fields. (`{ :name => 'bulbasaur' }`)
+`/:id DELETE` - Deletes a pokémon\
+`/:id PUT/UPDATE` - Updates a pokémon given a hash contains some or all of its fields.
+
+# Pokémon model schema
+Each pokémon will have the following fields:\
+- id: number(national pokédex number)\
+- name: string\
+- sprite_url: string\
+- type_1: string (possibily create a type that will hold possible types?)\
+- type_2: same as above\
+
