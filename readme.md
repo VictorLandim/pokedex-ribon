@@ -1,5 +1,7 @@
 # Ribon Pokédex App
 
+![alt text](ribon-pokedex.png 'Ribon Pokédex')
+
 This web project was proposed by [Ribon](https://home.ribon.io/) for its admission process.
 The candidates were asked to develop a pokéex web application with a React frontend that will consume a Ruby on Rails API.
 The API will seed its database with the first 151 pokémon using data from [PokeApi](https://pokeapi.co/docs/v2.html).
@@ -36,7 +38,7 @@ The main screen will list all pokémon in the database, displaying little inform
 
 The application will consume the following restful routes:
 
-> Each pokémon will have the following fields:\
+> Note that each pokémon will have the following fields:\
 > `id: number(national pokédex number)`\
 > `name: string`\
 > `sprite_url: string`\
