@@ -3,7 +3,7 @@
 ![alt text](ribon-pokedex.png 'Ribon Pokédex')
 
 This web project was proposed by [Ribon](https://home.ribon.io/) for its admission process.
-The candidates were asked to develop a pokéex web application with a React frontend that will consume a Ruby on Rails API.
+The candidates were asked to develop a pokédex web application with a React frontend that will consume a Ruby on Rails API.
 The API will seed its database with the first 151 pokémon using data from [PokeApi](https://pokeapi.co/docs/v2.html).
 
 ## Functionality
@@ -23,6 +23,7 @@ The main screen will list all pokémon in the database, displaying little inform
 -   Install packages & run webpack:
     -   `npm i`
     -   `npm start`
+    -   browse to `localhost:3000`
 
 # Development progress
 
