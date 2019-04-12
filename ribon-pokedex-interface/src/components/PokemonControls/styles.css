@@ -1,0 +1,21 @@
+.pokemon-controls {
+    padding: 0px 40px;
+}
+
+.pokemon-controls__button-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.pokemon-control__new-button {
+    border: 1px solid black;
+    display: inline-flex;
+    padding: 10px 30px;
+    border-radius: 35px;
+    color: black;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}

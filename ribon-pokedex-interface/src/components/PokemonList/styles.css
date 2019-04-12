@@ -1,0 +1,10 @@
+.pokemon-list {
+    padding: 20px 0;
+}
+
+.pokemon-list__heading {
+    font-weight: normal;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 40px;
+}
