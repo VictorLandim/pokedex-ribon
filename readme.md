@@ -40,7 +40,7 @@ The application will consume the following restful routes:
 `/ GET` - Retrieves all pokémon (name and sprite)\
 `/ POST` - Creates a new pokémon, given all fields listed bellow.\
 `/:id GET` - Retrieves details of a given pokémon (name, sprite, types, evolutions)\
-`/:id DELETE` - Deletes a pokémon
+`/:id DELETE` - Deletes a pokémon\
 `/:id PUT/UPDATE` - Updates a pokémon given a hash contains some or all of its fields.
 
 # Pokémon model schema
