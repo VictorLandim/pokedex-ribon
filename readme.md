@@ -42,7 +42,8 @@ The application will consume the following restful routes:
 `/:id DELETE` - Deletes a pokémon
 `/:id PUT/UPDATE` - Updates a pokémon given a hash contains some or all of its fields. (`{ :name => 'bulbasaur' }`)
 
- Note that each pokémon will have the following fields:\
+# Pokémon model schema
+Each pokémon will have the following fields:\
 `id: number(national pokédex number)`\
 `name: string`\
 `sprite_url: string`\
