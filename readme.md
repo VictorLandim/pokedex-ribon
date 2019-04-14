@@ -36,29 +36,32 @@ The main screen will list all pokémon in the database, displaying little inform
 
 -   [x] Pokémon listing
 -   [x] Name & number filtering
+-   [x] Selected/unselected cell state
+-   [x] Implement prop-types
 -   [ ] Pokémon details
--   [ ] Finish interface
--   [ ] Finish interface
--   [ ] Make interface responsive
 -   [ ] Implement redux & redux-thunk or redux-saga
--   [ ] Implement typescript
--   [ ] Add styled-components
--   [ ] Add frontend testing using jest
+-   [ ] Finish interface
 
 ## Backend
 
 -   [x] Setup basic CRUD api
 -   [x] Setup CORS
--   [ ] Authentication/Authorization
 -   [ ] Add backend testing using some-ruby-tesing-gem?
 
 ## Database
 
--   [ ] Create & implement table Type (name, color)
--   [ ] Create & implement table Evolution (name, level, item)
--   [ ] Implement relations
+-   [x] Create pokemon schema
+
+## Bonus
+
+-   [ ] Make interface responsive
+-   [ ] Implement typescript
+-   [ ] Add frontend testing using jest
+-   [ ] Dockerize API app
+-   [ ] Authentication/Authorization
 -   [ ] Migrate to a "real" database (mysql, postgres)
 -   [ ] Increase the number of fields in the pokemon model
+-   [ ] Evolution chain field should contain all evolutions
 
 # Api design
 
@@ -74,11 +77,12 @@ The application consists of a basic CRUD structure, composed by the following re
 
 Each pokémon will have the following fields:\
 
--   id: number(national pokédex number)\
+-   number: number(national pokédex number)\
 -   name: string\
--   sprite_url: string\
+-   sprite: string\
 -   type_1: string (possibily create a type that will hold possible types?)\
 -   type_2: same as above\
+-   evolution_chain: array of arrays
 
 # References
 

@@ -1,1 +1,4 @@
-/ribon-pokedex-interface/node_modules
+interface/node_modules/
+api/.bundle
+api/vendor/bundle/
+api/vendor/ruby/
