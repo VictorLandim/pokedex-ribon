@@ -16,29 +16,53 @@ The main screen will list all pokémon in the database, displaying little inform
 
 -   Install gems & run rails server:
     -   `bundle install`
-    -   `rails s`
+    -   `rails db:drop && rails db:migrate rails db:seed && rails s`
 
 ### Frontend
 
 -   Install packages & run webpack:
     -   `npm i`
     -   `npm start`
-    -   browse to `localhost:3000`
+    -   visit `localhost:3000`
 
 # Development progress
 
+## Misc
+
 -   [x] Create repo
 -   [x] Write readme
+
+## Frontend
+
+-   [x] Pokémon listing
+-   [x] Name & number filtering
+-   [ ] Pokémon details
 -   [ ] Finish interface
+-   [ ] Finish interface
+-   [ ] Make interface responsive
 -   [ ] Implement redux & redux-thunk or redux-saga
 -   [ ] Implement typescript
 -   [ ] Add styled-components
 -   [ ] Add frontend testing using jest
+
+## Backend
+
+-   [x] Setup basic CRUD api
+-   [x] Setup CORS
+-   [ ] Authentication/Authorization
 -   [ ] Add backend testing using some-ruby-tesing-gem?
+
+## Database
+
+-   [ ] Create & implement table Type (name, color)
+-   [ ] Create & implement table Evolution (name, level, item)
+-   [ ] Implement relations
+-   [ ] Migrate to a "real" database (mysql, postgres)
+-   [ ] Increase the number of fields in the pokemon model
 
 # Api design
 
-The application will consume the following restful routes:
+The application consists of a basic CRUD structure, composed by the following restful routes:
 
 `/ GET` - Retrieves all pokémon (name and sprite)\
 `/ POST` - Creates a new pokémon, given all fields listed bellow.\
@@ -55,3 +79,7 @@ Each pokémon will have the following fields:\
 -   sprite_url: string\
 -   type_1: string (possibily create a type that will hold possible types?)\
 -   type_2: same as above\
+
+# References
+
+[Rails status code symbols](http://billpatrianakos.me/blog/2013/10/13/list-of-rails-status-code-symbols/)
