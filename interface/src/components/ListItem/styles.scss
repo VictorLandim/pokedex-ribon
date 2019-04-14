@@ -36,6 +36,15 @@
         transform: translateX(10px);
     }
 
+    &--selected &__content {
+        transform: translateX(10px) !important;
+        background-color: $gray-2 !important;
+    }
+
+    &--selected &__sprite {
+        transform: scale(1.4);
+    }
+
     &__sprite-container {
         display: flex;
         align-items: center;

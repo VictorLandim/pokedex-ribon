@@ -4,16 +4,17 @@ import {
     MONSTERS_ERROR,
     MONSTER_DETAILS_FETCH,
     MONSTER_DETAILS_RESULT,
-    MONSTER_DETAILS_ERROR
+    MONSTER_DETAILS_ERROR,
+    MONSTER_CLEAR_SELECTED
 } from '../types';
 
 const INITIAL_STATE = {
-    monsters: [],
-    monsterDetails: {},
-    isLoadingMonsters: false,
-    isLoadingMonsterDetails: false,
-    monstersError: null,
-    monsterDetailsError: null
+    list: [],
+    details: null,
+    isLoadingList: false,
+    isLoadingDetails: false,
+    listError: null,
+    detailsError: null
 };
 
 const monsterReducer = (state = INITIAL_STATE, action) => {
@@ -21,36 +22,42 @@ const monsterReducer = (state = INITIAL_STATE, action) => {
         case MONSTERS_FETCH:
             return {
                 ...state,
-                isLoadingMonsters: true
+                isLoadingList: true
             };
         case MONSTERS_RESULT:
             return {
                 ...state,
-                isLoadingMonsters: false,
-                monsters: action.payload
+                isLoadingList: false,
+                list: action.payload
             };
         case MONSTERS_ERROR:
             return {
                 ...state,
-                isLoadingMonsters: false,
-                monstersError: action.payload
+                isLoadingList: false,
+                listError: action.payload
             };
         case MONSTER_DETAILS_FETCH:
             return {
                 ...state,
-                isLoadingMonsterDetails: true
+                isLoadingDetails: true
             };
         case MONSTER_DETAILS_RESULT:
             return {
                 ...state,
-                isLoadingMonsterDetails: false,
-                monsterDetails: action.payload
+                isLoadingDetails: false,
+                selected: action.payload.number,
+                details: action.payload
             };
         case MONSTER_DETAILS_ERROR:
             return {
                 ...state,
-                isLoadingMonsterDetails: false,
-                monsterDetailsError: action.payload
+                isLoadingDetails: false,
+                detailsError: action.payload
+            };
+        case MONSTER_CLEAR_SELECTED:
+            return {
+                ...state,
+                details: null
             };
         default:
             return state;

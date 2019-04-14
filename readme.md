@@ -37,7 +37,6 @@ The main screen will list all pokémon in the database, displaying little inform
 -   [x] Pokémon listing
 -   [x] Name & number filtering
 -   [x] Selected/unselected cell state
--   [x] Implement prop-types
 -   [ ] Pokémon details
 -   [ ] Implement redux & redux-thunk or redux-saga
 -   [ ] Finish interface
@@ -51,9 +50,11 @@ The main screen will list all pokémon in the database, displaying little inform
 ## Database
 
 -   [x] Create pokemon schema
+-   [x] Implement prop-types
 
 ## Bonus
 
+-   [x] Sass with node-sass for styling
 -   [ ] Make interface responsive
 -   [ ] Implement typescript
 -   [ ] Add frontend testing using jest

@@ -21,4 +21,108 @@
         font-size: 14px;
         margin-bottom: 20px;
     }
+
+    &__empty {
+        color: $gray-3;
+        text-transform: uppercase;
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    &__top {
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__header {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 25px;
+        padding: 0 20px;
+    }
+
+    &__button {
+        background-color: #fff;
+        padding: 14px;
+        cursor: pointer;
+        border-radius: 50%;
+        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        transition: 0.3s all;
+
+        &:hover {
+            transform: scale(1.08);
+        }
+    }
+
+    &__number {
+        color: $gray-4;
+        font-size: 36px;
+    }
+
+    &__name {
+        font-size: 22px;
+        color: $black-1;
+        margin-bottom: 20px;
+    }
+
+    &__sprite-container {
+        padding: 60px;
+        position: relative;
+        box-shadow: inset 0px 1px 10px 0px rgba(0, 0, 0, 0.3);
+        border-radius: 50%;
+    }
+
+    &__sprite {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: auto;
+        transition: 0.3s all;
+        animation: pulsate 1s linear infinite;
+    }
+
+    &__type-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    &__type {
+        flex: 1;
+        font-size: 12px;
+        border-radius: 5px;
+        color: $white-1;
+        padding: 5px 10px;
+        margin: 5px;
+        box-shadow: 0px 0px 2px 0px rgba($color: #000000, $alpha: 0.5);
+    }
+}
+
+@keyframes pulsate {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
 }

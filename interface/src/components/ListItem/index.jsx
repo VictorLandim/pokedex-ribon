@@ -3,8 +3,8 @@ import { FaPen, FaTrash } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 import './styles.scss';
 
-const ListItem = ({ number, name, sprite, onClick }) => (
-    <div className="list-item" onClick={onClick}>
+const ListItem = ({ number, name, sprite, selected, onClick }) => (
+    <div className={selected ? 'list-item list-item--selected' : 'list-item'} onClick={onClick}>
         <div className="list-item__bg" />
         <div className="list-item__content">
             <div className="list-item__sprite-container">
@@ -19,7 +19,9 @@ const ListItem = ({ number, name, sprite, onClick }) => (
 ListItem.propTypes = {
     name: PropTypes.string.isRequired,
     sprite: PropTypes.string.isRequired,
-    number: PropTypes.number.isRequired
+    number: PropTypes.number.isRequired,
+    selected: PropTypes.bool.isRequired,
+    onClick: PropTypes.func.isRequired
 };
 
 export default ListItem;

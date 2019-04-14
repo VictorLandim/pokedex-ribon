@@ -41,4 +41,8 @@ const TYPE_COLOR_MAP_2 = {
     flying: '#A890F0'
 };
 
-export { TYPE_COLOR_MAP };
+const MONSTER_API_URL = 'http://localhost:3000/api/monsters/';
+
+const capitalizeFirst = s => s.charAt(0).toUpperCase() + s.substring(1);
+
+export { TYPE_COLOR_MAP, MONSTER_API_URL, capitalizeFirst };
