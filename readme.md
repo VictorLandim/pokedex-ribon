@@ -12,15 +12,19 @@ The main screen will list all pokémon in the database, displaying little inform
 
 # How to run
 
+Clone the repo, then:
+
 ### Backend
 
 -   Install gems & run rails server:
+    -   `cd api`
     -   `bundle install`
     -   `rails db:drop && rails db:migrate rails db:seed && rails s`
 
 ### Frontend
 
 -   Install packages & run webpack:
+    -   `cd ui`
     -   `npm i`
     -   `PORT=3001 npm start`
     -   visit `localhost:3001`
@@ -35,30 +39,29 @@ The main screen will list all pokémon in the database, displaying little inform
 
 ## Frontend
 
+-   [x] Mockup ui
 -   [x] Pokémon listing
 -   [x] Name & number filtering
 -   [x] Selected/unselected cell state
 -   [x] Pokémon details
--   [x] Implement redux & redux-thunk or redux-saga
--   [x] Finish interface
+-   [x] Finish ui
 
 ## Backend
 
--   [x] Setup basic CRUD api
+-   [x] Setup basic CRUD
 -   [x] Setup CORS
+-   [x] Design pokemon schema
+-   [x] Create seeding module
 -   [ ] Add backend testing using some-ruby-tesing-gem?
-
-## Database
-
--   [x] Create pokemon schema
--   [x] Implement prop-types
 
 ## Bonus
 
 -   [x] Sass with node-sass for styling
 -   [x] Fancy UI effects
+-   [x] Implement prop-types
+-   [x] Implement redux & redux-saga
 -   [ ] Evolution chain field should contain all evolutions
--   [ ] Make interface responsive
+-   [ ] Make ui responsive
 -   [ ] Implement typescript
 -   [ ] Add frontend testing using jest
 -   [ ] Dockerize API app
@@ -78,14 +81,14 @@ The application consists of a basic CRUD structure, composed by the following re
 
 # Pokémon model schema
 
-Each pokémon will have the following fields:\
+Each pokémon will have the following fields:
 
--   id: unique identifier\
--   number: number(national pokédex number)\
--   name: string\
--   sprite: string\
--   type_1: string\
--   type_2: string\
+-   id: unique identifier
+-   number: number(national pokédex number)
+-   name: string
+-   sprite: string
+-   type_1: string
+-   type_2: string
 -   evolution_chain: array of objects
 
 # Screenshot

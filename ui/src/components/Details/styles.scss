@@ -1,0 +1,182 @@
+@import '../../sass/variables';
+
+.details {
+    & {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    &__container {
+        flex: 1;
+        border-top-left-radius: 75px;
+        border-bottom-right-radius: 75px;
+        box-shadow: 0px 3px 20px 0px rgba($color: #000000, $alpha: 0.2);
+        position: relative;
+        background-color: $white-1;
+    }
+
+    &__title {
+        text-align: center;
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    &__empty {
+        color: $gray-3;
+        text-transform: uppercase;
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    &__top {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0px 30px;
+
+        & > {
+            flex: 1;
+        }
+    }
+
+    &__header {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 25px;
+        padding: 20px;
+        border-bottom: 1px solid $gray-3;
+    }
+
+    &__button {
+        background-color: #fff;
+        padding: 17px;
+        font-size: 18px;
+        cursor: pointer;
+        border-radius: 50%;
+        box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.3s all;
+
+        &:hover {
+            transform: scale(1.08);
+        }
+    }
+
+    &__number {
+        color: $gray-4;
+        font-size: 36px;
+    }
+
+    &__name {
+        font-size: 22px;
+        color: $black-1;
+        margin-bottom: 20px;
+        font-weight: bold;
+    }
+
+    &__sprite-container {
+        padding: 60px;
+        position: relative;
+        box-shadow: inset 0px 1px 10px 0px rgba(0, 0, 0, 0.3);
+        border-radius: 50%;
+    }
+
+    &__sprite {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: auto;
+        transition: 0.3s all;
+        animation: pulsate 1s linear infinite;
+    }
+
+    &__type-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    &__type {
+        flex: 1;
+        font-size: 12px;
+        border-radius: 5px;
+        color: $white-1;
+        padding: 5px 10px;
+        margin: 5px;
+        box-shadow: 0px 0px 2px 0px rgba($color: #000000, $alpha: 0.5);
+    }
+
+    &__evolution-container {
+    }
+
+    &__evolution-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    &__evolution-title {
+        text-align: center;
+        color: $gray-4;
+        font-size: 18px;
+        margin-bottom: 20x;
+    }
+
+    &__evolution-message {
+        text-align: center;
+        color: $gray-1;
+        font-size: 14px;
+    }
+
+    &__evolution-image {
+        width: 100px;
+    }
+
+    &__evolution-name {
+        font-size: 14px;
+        text-align: center;
+        color: $gray-1;
+    }
+}
+
+@keyframes pulsate {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}

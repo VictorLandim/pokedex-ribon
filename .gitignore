@@ -1,4 +1,4 @@
-interface/node_modules/
+ui/node_modules/
 api/.bundle
 api/vendor/bundle/
 api/vendor/ruby/
