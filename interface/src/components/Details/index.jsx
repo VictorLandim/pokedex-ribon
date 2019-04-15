@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import PokeballLoader from '../PokeballLoader';
-import { FaTrash, FaPen } from 'react-icons/fa';
+import { FaTrash, FaPen, FaArrowRight } from 'react-icons/fa';
+import { submitMonsterDeleteAction, showMonsterEditAction } from '../../actions';
 import { TYPE_COLOR_MAP, capitalizeFirst } from '../../util';
 import './styles.scss';
 
 class Details extends Component {
-    static propTypes = {
-        details: PropTypes.shape
-    };
+    static propTypes = {};
 
     constructor(props) {
         super(props);
@@ -18,9 +17,13 @@ class Details extends Component {
         this.onDelete = this.onDelete.bind(this);
     }
 
-    onEdit() {}
+    onEdit() {
+        this.props.showMonsterEdit();
+    }
 
-    onDelete() {}
+    onDelete() {
+        this.props.submitMonsterDelete();
+    }
 
     renderType = t =>
         t && (
@@ -29,47 +32,84 @@ class Details extends Component {
             </div>
         );
 
+    renderEvolution() {
+        try {
+            const { details } = this.props;
+            const evolutions = JSON.parse(details.evolution_chain);
+
+            if (evolutions.length === 0) {
+                return (
+                    <div className="details__evolution-message">
+                        This pokémon is not known <br /> to have an evolution.
+                    </div>
+                );
+            }
+
+            return evolutions.map(e => (
+                <>
+                    <div className="details__evolution-title">Evolution</div>
+                    <div className="details__evolution-row">
+                        <div className="details__evolution-block">
+                            <img src={details.sprite} className="details__evolution-image" />
+                            <div className="details__evolution-name">{capitalizeFirst(details.name)}</div>
+                        </div>
+                        <FaArrowRight />
+                        <div className="details__evolution-block">
+                            <img src={e.sprite} className="details__evolution-image" />
+                            <div className="details__evolution-name">{capitalizeFirst(e.name)}</div>
+                        </div>
+                    </div>
+                </>
+            ));
+        } catch (e) {
+            // malformed string
+            return <div className="details__evolution-message">Malformed evolution field.</div>;
+        }
+    }
+
     renderDetails() {
-        const { details } = this.props;
+        const { details, submitMonsterDelete, showMonsterEdit } = this.props;
         if (!details) return <div className="details__empty">No pokémon data</div>;
 
-        const { name, number, sprite, type_1, type_2, evolution_chain } = details;
+        const { id, name, number, sprite, type_1, type_2, evolution_chain } = details;
 
         //hex alpha
-        const ALPHA = '66';
+        const ALPHA = '99';
 
         let spriteBg = `linear-gradient(to bottom, ${TYPE_COLOR_MAP[type_1]}${ALPHA}, ${
             TYPE_COLOR_MAP[type_1]
         }${ALPHA})`;
 
-        console.log(spriteBg);
         if (type_2) {
-            spriteBg = `linear-gradient(to bottom, ${TYPE_COLOR_MAP[type_1]}${ALPHA}, ${
-                TYPE_COLOR_MAP[type_2]
-            }${ALPHA})`;
+            spriteBg = `linear-gradient(to bottom, ${TYPE_COLOR_MAP[type_1]}${ALPHA}, ${TYPE_COLOR_MAP[type_2] ||
+                TYPE_COLOR_MAP['other']}${ALPHA})`;
         }
 
         return (
             <div className="details__content">
                 <div className="details__top">
                     <div className="details__header">
-                        <div className="details__button details__button--edit" onClick={this.onDelete}>
+                        <div className="details__button" onClick={() => submitMonsterDelete(id)}>
                             <FaTrash />
                         </div>
                         <div className="details__number">{`# ${number}`}</div>
-                        <div className="details__button details__button--new" onClick={this.onEdit}>
+                        <div className="details__button" onClick={() => showMonsterEdit()}>
                             <FaPen />
                         </div>
                     </div>
-                    <div className="details__name">{capitalizeFirst(name)}</div>
-                    <div className="details__sprite-container" style={{ background: spriteBg }}>
-                        <img src={sprite} className="details__sprite" />
+                    <div className="details__body">
+                        <div className="details__info">
+                            <div className="details__name">{capitalizeFirst(name)}</div>
+                            <div className="details__sprite-container" style={{ background: spriteBg }}>
+                                <img src={sprite} className="details__sprite" />
+                            </div>
+                            <div className="details__type-container">
+                                {this.renderType(type_1)}
+                                {this.renderType(type_2)}
+                            </div>
+                        </div>
+                        <div className="details__evolution-container">{this.renderEvolution()}</div>
                     </div>
-                    <div className="details__type-container">
-                        {this.renderType(type_1)}
-                        {this.renderType(type_2)}
-                    </div>
-                    <div className="details__evolution-container" />
                 </div>
             </div>
         );
@@ -98,4 +138,12 @@ const mapStateToProps = ({ monster }) => ({
     isLoadingDetails: monster.isLoadingDetails
 });
 
-export default connect(mapStateToProps)(Details);
+const mapDispatchToProps = dispatch => ({
+    submitMonsterDelete: id => dispatch(submitMonsterDeleteAction(id)),
+    showMonsterEdit: () => dispatch(showMonsterEditAction())
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Details);

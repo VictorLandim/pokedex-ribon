@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Lato:400,700');
-
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+@import '../../sass/variables';
 @font-face {
     font-family: 'Pokemon';
     src: url('../../res/Pokemon_Solid.ttf') format('truetype');
@@ -18,15 +18,12 @@ body {
 
 body {
     position: relative;
-    background-color: #fff;
-    font-family: 'Lato', sans-serif;
+    background-color: $white-2;
+    font-family: 'Nunito', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow: hidden;
-
-    @media only screen and(max-width: 768px) {
-        overflow: auto;
-    }
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 /* maybe a bad idea? */

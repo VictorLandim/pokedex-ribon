@@ -1,7 +1,7 @@
 module Api
     class MonstersController < ApplicationController
         def index
-            monsters = Monster.order('number ASC')
+            monsters = Monster.select('id,name, sprite, number').order('number ASC')
             render json: { success: true, data: monsters }, status: :ok
         end
 
@@ -11,6 +11,8 @@ module Api
         end
 
         def create
+            puts monster_params
+
             monster = Monster.new(monster_params)
 
             if monster.save

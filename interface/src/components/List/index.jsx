@@ -3,7 +3,12 @@ import { connect } from 'react-redux';
 import { FaPlus } from 'react-icons/fa';
 import ListItem from '../ListItem';
 import PokeballLoader from '../PokeballLoader';
-import { fetchMonstersAction, fetchMonsterDetailsAction, clearSelectedMonsterAction } from '../../actions';
+import {
+    fetchMonstersAction,
+    fetchMonsterDetailsAction,
+    clearSelectedMonsterAction,
+    showMonsterCreateAction
+} from '../../actions';
 import './styles.scss';
 
 class List extends Component {
@@ -27,22 +32,22 @@ class List extends Component {
         this.setState({ search: e.target.value });
     }
 
-    onListItemClick(number) {
+    onListItemClick(id) {
         const { fetchMonsterDetails, details, clearSelectedMonster } = this.props;
 
-        if (details && details.number === number) return clearSelectedMonster();
-        fetchMonsterDetails(number);
+        if (details && details.id === id) return clearSelectedMonster();
+        fetchMonsterDetails(id);
     }
 
     onAdd() {
-        alert('hello');
+        this.props.showMonsterCreate();
     }
 
     renderPokemonList() {
         const { monsters, details, isLoadingMonsters } = this.props;
         const { search } = this.state;
         if (isLoadingMonsters) return <PokeballLoader />;
-
+        console.log(monsters);
         return monsters
             .filter(p => {
                 if (isNaN(search)) {
@@ -53,9 +58,9 @@ class List extends Component {
             .map((e, i) => (
                 <ListItem
                     {...e}
-                    selected={details ? details.number === e.number : false}
+                    selected={details ? details.id === e.id : false}
                     key={i}
-                    onClick={() => this.onListItemClick(e.number)}
+                    onClick={() => this.onListItemClick(e.id)}
                 />
             ));
     }
@@ -97,7 +102,8 @@ const mapStateToProps = ({ monster }) => ({
 const mapDispatchToProps = dispatch => ({
     fetchMonsters: () => dispatch(fetchMonstersAction()),
     fetchMonsterDetails: number => dispatch(fetchMonsterDetailsAction(number)),
-    clearSelectedMonster: () => dispatch(clearSelectedMonsterAction())
+    clearSelectedMonster: () => dispatch(clearSelectedMonsterAction()),
+    showMonsterCreate: () => dispatch(showMonsterCreateAction())
 });
 
 export default connect(

@@ -17,32 +17,9 @@ const TYPE_COLOR_MAP = {
     dark: '#705746',
     steel: '#B7B7CE',
     fairy: '#D685AD',
-    other: '#f3f3f3'
+    other: '#37474f'
 };
-
-const TYPE_COLOR_MAP_2 = {
-    normal: '#A8A878',
-    fire: '#F08030',
-    fighting: '#C03028',
-    water: '#6890F0',
-    grass: '#78C850',
-    poison: '#A040A0',
-    electric: '#F8D030',
-    ground: '#E0C068',
-    rock: '#B8A038',
-    bug: '#A8B820',
-    dragon: '#7038F8',
-    ghost: '#705898',
-    dark: '#705848',
-    fairy: '#EE99AC',
-    steel: '#B8B8D0',
-    psychic: '#F85888',
-    ice: '#98D8D8',
-    flying: '#A890F0'
-};
-
-const MONSTER_API_URL = 'http://localhost:3000/api/monsters/';
-
+const MONSTER_API_URL = 'http://localhost:3000/api/monsters';
 const capitalizeFirst = s => s.charAt(0).toUpperCase() + s.substring(1);
 
 export { TYPE_COLOR_MAP, MONSTER_API_URL, capitalizeFirst };

@@ -15,14 +15,17 @@
 # - species.name -> string
 
 class Seeder
+    require 'net/http'
+    require 'net/https'
     require 'json'
     require 'open-uri'
     require 'parallel'
+    require 'resolv-replace'
 
-    attr_reader :monster_number
+    attr_reader :monster_numbers
 
     def initialize monster_number
-        @monster_number = monster_number
+        @monster_numbers = monster_number
 
         insert_monster_data fetch_monster_data
     end
@@ -46,20 +49,40 @@ class Seeder
     
         id.reverse.to_i
     end
+
+    def get_evo monster_name, chain
+        if chain["evolves_to"].empty?
+            return []
+        end
+        
+        if chain["species"]["name"] == monster_name
+            return chain["evolves_to"].map do |n|
+                {
+                    "name" => n["species"]["name"], 
+                    "sprite" => "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/#{get_num_from_url(n["species"]["url"])}.png",
+                }
+            end
+        else
+            chain["evolves_to"].each do |n|
+                if n["species"]["name"] == monster_name
+                    return get_evo(monster_name, n)
+                end
+            end
+        end
+
+        return []
+    end
     
     # builds evolution chain array given a root chain
-    def get_evo_recur chain, evolution_array, stage
+    def get_evo_recur chain, evolution_array
         # pushes current monsters
-        evolution_array << { 
+        evolution_array << [{ 
             "name" => chain["species"]["name"], 
-            "url" => chain["species"]["url"],
-            "number" => get_num_from_url(chain["species"]["url"]),
-            "sprite" => "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/#{get_num_from_url(chain["species"]["url"])}.png/",
-            "stage" => stage
-        }
+            "sprite" => "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/#{get_num_from_url(chain["species"]["url"])}.png",
+        }]
+
+        return evolution_array if chain["evolves_to"].empty?
     
-        return
-        
         # chain data format:
         # chain = {
         #   evolution_details => [...],
@@ -68,24 +91,18 @@ class Seeder
         # }
         
         # chain is an array that holds evolutions of the same stage
-        chain["evolves_to"].each_with_index do |e, i|
-            get_evo_recur(e, evolution_array, stage + 1)
-        end 
+        # evolution_array << chain["evolves_to"].map do |n|
+        #     get_evo_recur(n, evolution_array)
+        # end 
     
-        # # monster with no evolutions!
-        # if chain["evolves_to"].empty?
-        #     puts 'chain ended!'
-        #     evolution_array 
-        # else
-        #     # monster is final evolution
-        #     puts 'the chain continues'
-        #     get_evo_recur chain["evolves_to"], evolution_array
-        # end
+        return get_evo_recur chain["evolves_to"][0], evolution_array
+        return evolution_array
     end
     
     def fetch_monster_data
         # parallalize data fetching
-        monster_data = Parallel.map((1..@monster_number)) do |n|
+        # monster_data = (@monster_numbers).map do |n|
+        monster_data = Parallel.map(@monster_numbers) do |n|
             # fetch monster info
             info_url = "https://pokeapi.co/api/v2/pokemon/#{n}"
             monster_info = JSON.parse(open(info_url).read)
@@ -124,29 +141,26 @@ class Seeder
     
             # this field will always be present
             evolution_chain_url = monster_species["evolution_chain"]["url"]
-    
             evolutions = JSON.parse(open(evolution_chain_url).read)
-    
-            evolution_chain = get_evo_recur(evolutions["chain"], [], 0)
-    
-            response = {
+
+            # evolution_chain = get_evo_recur(evolutions["chain"], [])
+            evolution_chain = get_evo(name, evolutions["chain"])
+
+            {
                 :name => name,
                 :number => number,
                 :sprite => sprite,
                 :type_1 => type_1,
                 :type_2 => type_2,
-                :evolution_chain => evolution_chain 
+                :evolution_chain => evolution_chain.to_json
             }
-    
         end
     
         puts '> Pokémon data fetched.'
-    
         monster_data
     end
     
     def insert_monster_data monster_data
-        puts monster_data.length
         monster_data.each do |m|
             Monster.create(m);
             print "> Created pokémon ##{m[:number]}.\r"
@@ -157,4 +171,4 @@ class Seeder
     end
 end
 
-Seeder.new 151
+Seeder.new 1...151

@@ -8,7 +8,7 @@ The API will seed its database with the first 151 pokémon using data from [Poke
 
 ## Functionality
 
-The main screen will list all pokémon in the database, displaying little information (only its name, number and sprite). Clicking on a pokémon will fetch its details (types and evolution chain). It will be possible to filter the pokémon in display by a text input.
+The main screen will list all pokémon in the database, displaying little information (only its name, number and sprite). Clicking on a pokémon will fetch its details (types and evolutions). It will be possible to filter the pokémon in display by a text input.
 
 # How to run
 
@@ -22,8 +22,8 @@ The main screen will list all pokémon in the database, displaying little inform
 
 -   Install packages & run webpack:
     -   `npm i`
-    -   `npm start`
-    -   visit `localhost:3000`
+    -   `PORT=3001 npm start`
+    -   visit `localhost:3001`
 
 # Development progress
 
@@ -31,15 +31,16 @@ The main screen will list all pokémon in the database, displaying little inform
 
 -   [x] Create repo
 -   [x] Write readme
+-   [x] Plan project
 
 ## Frontend
 
 -   [x] Pokémon listing
 -   [x] Name & number filtering
 -   [x] Selected/unselected cell state
--   [ ] Pokémon details
--   [ ] Implement redux & redux-thunk or redux-saga
--   [ ] Finish interface
+-   [x] Pokémon details
+-   [x] Implement redux & redux-thunk or redux-saga
+-   [x] Finish interface
 
 ## Backend
 
@@ -55,6 +56,8 @@ The main screen will list all pokémon in the database, displaying little inform
 ## Bonus
 
 -   [x] Sass with node-sass for styling
+-   [x] Fancy UI effects
+-   [ ] Evolution chain field should contain all evolutions
 -   [ ] Make interface responsive
 -   [ ] Implement typescript
 -   [ ] Add frontend testing using jest
@@ -62,7 +65,6 @@ The main screen will list all pokémon in the database, displaying little inform
 -   [ ] Authentication/Authorization
 -   [ ] Migrate to a "real" database (mysql, postgres)
 -   [ ] Increase the number of fields in the pokemon model
--   [ ] Evolution chain field should contain all evolutions
 
 # Api design
 
@@ -72,19 +74,20 @@ The application consists of a basic CRUD structure, composed by the following re
 `/ POST` - Creates a new pokémon, given all fields listed bellow.\
 `/:id GET` - Retrieves details of a given pokémon (name, sprite, types, evolutions)\
 `/:id DELETE` - Deletes a pokémon\
-`/:id PUT/UPDATE` - Updates a pokémon given a hash contains some or all of its fields.
+`/:id PUT/UPDATE` - Updates a pokémon given a hash containing some or all of its fields.
 
 # Pokémon model schema
 
 Each pokémon will have the following fields:\
 
+-   id: unique identifier\
 -   number: number(national pokédex number)\
 -   name: string\
 -   sprite: string\
--   type_1: string (possibily create a type that will hold possible types?)\
--   type_2: same as above\
--   evolution_chain: array of arrays
+-   type_1: string\
+-   type_2: string\
+-   evolution_chain: array of objects
 
-# References
+# Screenshot
 
-[Rails status code symbols](http://billpatrianakos.me/blog/2013/10/13/list-of-rails-status-code-symbols/)
+![alt text](ribon-pokedex-1.png 'Ribon Pokédex')

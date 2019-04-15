@@ -5,16 +5,24 @@ import {
     MONSTER_DETAILS_FETCH,
     MONSTER_DETAILS_RESULT,
     MONSTER_DETAILS_ERROR,
-    MONSTER_CLEAR_SELECTED
+    MONSTER_CLEAR_SELECTED,
+    MODAL_CLOSE,
+    MONSTER_CREATE_SHOW,
+    MONSTER_EDIT_SHOW
 } from '../types';
 
 const INITIAL_STATE = {
     list: [],
     details: null,
+
     isLoadingList: false,
     isLoadingDetails: false,
+
     listError: null,
-    detailsError: null
+    detailsError: null,
+
+    isModalVisible: false,
+    isModalCreating: false
 };
 
 const monsterReducer = (state = INITIAL_STATE, action) => {
@@ -27,6 +35,7 @@ const monsterReducer = (state = INITIAL_STATE, action) => {
         case MONSTERS_RESULT:
             return {
                 ...state,
+                details: null,
                 isLoadingList: false,
                 list: action.payload
             };
@@ -59,6 +68,24 @@ const monsterReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 details: null
             };
+        case MODAL_CLOSE:
+            return {
+                ...state,
+                isModalVisible: false
+            };
+        case MONSTER_CREATE_SHOW:
+            return {
+                ...state,
+                isModalVisible: true,
+                isModalCreating: true
+            };
+        case MONSTER_EDIT_SHOW:
+            return {
+                ...state,
+                isModalVisible: true,
+                isModalCreating: false
+            };
+        // todo add errors!
         default:
             return state;
     }

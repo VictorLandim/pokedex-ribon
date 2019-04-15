@@ -5,9 +5,15 @@ import './styles.scss';
 export default () => (
     <div className="pokedex__right">
         <div className="pokedex__right-header">
-            <div className="pokedex__right-leds">
-                <div className="pokedex__right-header-led pokedex__right-header-led--1" />
-                <div className="pokedex__right-header-led pokedex__right-header-led--2" />
+            <div className="pokedex__leds">
+                <div className="pokedex__led">
+                    <div className="pokedex__led-inner" />
+                    <div className="pokedex__led-outer" />
+                </div>
+                <div className="pokedex__led">
+                    <div className="pokedex__led-inner" />
+                    <div className="pokedex__led-outer" />
+                </div>
             </div>
             <div className="pokedex__right-title">Ribon Pokédex!</div>
         </div>

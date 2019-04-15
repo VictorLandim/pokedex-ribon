@@ -42,6 +42,10 @@ class PokedexLeft extends Component {
                         <div className="pokedex__pokeball-line" />
                         <div className="pokedex__pokeball-center" />
                     </div>
+                    <div className="pokedex__circle">
+                        <div className="pokedex__circle-inner" />
+                        <div className="pokedex__circle-outer" />
+                    </div>
                 </div>
                 <div className="pokedex__left-body">
                     <Details />
