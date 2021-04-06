@@ -1,6 +1,7 @@
 # Ribon Pokédex App
 
 ![alt text](ribon-pokedex.png 'Ribon Pokédex')
+![alt text](ribon-pokedex-1.png 'Ribon Pokédex')
 
 This web project was proposed by [Ribon](https://home.ribon.io/) for its admission process.
 The candidates were asked to develop a pokédex web application with a React frontend that will consume a Ruby on Rails API.
@@ -91,6 +92,3 @@ Each pokémon will have the following fields:
 -   type_2: string
 -   evolution_chain: array of objects
 
-# Screenshot
-
-![alt text](ribon-pokedex-1.png 'Ribon Pokédex')
